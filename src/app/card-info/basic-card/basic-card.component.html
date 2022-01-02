@@ -1,0 +1,60 @@
+<div class="card card-body d-flex justify-content-center">
+  <legend style="font-size: 1.3em; font-weight: 800; color: rgb(252, 252, 245);">
+    {{this.title}}
+  </legend>
+
+  <!-- <ng-container *ngIf="this.card">
+    <ng-container *ngFor="let card of card.cards">
+    </ng-container>
+  </ng-container> -->
+  <div class="shadow p-3 mb-5 bg-gray rounded">
+
+    <form [formGroup]="cardForm">
+      <mat-form-field appearance="outline" class="col-md-9 offset-1">
+        <mat-label>Numero de la tarjeta*:</mat-label>
+        <input matInput placeholder="Número de tarjeta" formControlName="cardNumber" type="text" id="cardNumber"
+          cardNumber="cardNumber">
+        <mat-error appearance="outline" *ngIf="cardForm.get('cardNumber').invalid">
+          {{getError("cardNumber", 'Número de tarjeta')}}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-9 offset-1">
+        <mat-label>Fecha de expiración*</mat-label>
+        <input matInput [matDatepicker]="dp3" readonly [min]="getToday()" formControlName="expirationDate">
+        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+        <mat-error *ngIf="cardForm.get('expirationDate').invalid">{{ getError('expirationDate', 'Fecha de expiración')
+          }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="col-md-9 offset-1">
+        <mat-label>CV*:</mat-label>
+        <input matInput placeholder="Número CV" formControlName="cv" type="text" id="cv" cv="cv">
+        <mat-error appearance="outline" *ngIf="cardForm.get('cv').invalid">
+          {{getError("cv", 'CV')}}
+        </mat-error>
+      </mat-form-field>
+
+      <ng-container *ngIf="card; else createCard">
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-outline-warning" (click)="updateCard()">
+            Actualizar Tarjeta</button>
+          <button class="btn btn-outline-danger button-space" (click)="deleteCard()">
+            Eliminar Tarjeta</button>
+        </div>
+      </ng-container>
+
+      <ng-template #createCard>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-outline-success" (click)="saveCard()">
+            Agregar Tarjeta</button>
+
+        </div>
+      </ng-template>
+    </form>
+  </div>
+  <br />
+
+</div>

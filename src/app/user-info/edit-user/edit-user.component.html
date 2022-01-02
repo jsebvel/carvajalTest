@@ -1,0 +1,5 @@
+<ng-container *ngIf="userList && userList.length > 0">
+  <ng-container *ngFor="let user of userList; let i = index">
+    <app-personal-information [userListed]="user" [userIndex]="i" [usersLength]="userList.length"></app-personal-information>
+  </ng-container>
+</ng-container>
