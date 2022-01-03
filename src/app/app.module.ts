@@ -14,7 +14,6 @@ import { registerLocaleData } from '@angular/common';
 import localePy from '@angular/common/locales/es-US';
 import { AuthModule } from './auth/auth.module';
 import { CardNumberPipe } from './card-number.pipe';
-import { HomeComponent } from './home/home.component';
 registerLocaleData(localePy, 'es');
 
 @NgModule({

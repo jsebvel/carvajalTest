@@ -10,7 +10,6 @@ import { BasicCardComponent } from './basic-card/basic-card.component';
 import { CreateCardComponent } from './create-card/create-card.component';
 import { NavbarComponent } from '../shared/navbar/navbar.component';
 import { CardNumberPipe } from '../card-number.pipe';
-import { HomeComponent } from '../home/home.component';
 
 
 @NgModule({
@@ -20,7 +19,6 @@ import { HomeComponent } from '../home/home.component';
     BasicCardComponent,
     CreateCardComponent,
     CardNumberPipe,
-    HomeComponent,
     NavbarComponent
   ],
   imports: [
