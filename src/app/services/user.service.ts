@@ -35,6 +35,6 @@ export class UserService {
   }
 
   getToken() {
-    return localStorage.getItem('token') ? localStorage.getItem('token') : null;
+    return localStorage.getItem('token') ?? null;
   }
 }
