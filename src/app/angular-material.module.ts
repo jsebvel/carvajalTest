@@ -16,8 +16,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatIconModule,
     MatSnackBarModule,
     MatButtonModule,
+    MatProgressSpinnerModule
 
   ],
   exports: [
@@ -54,12 +57,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatSortModule,
     MatTooltipModule,
     MatDialogActions,
-    MatDialogContent ,
+    MatDialogContent,
     MatRadioModule,
     MatExpansionModule,
     MatIconModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatProgressSpinnerModule
   ],
 })
 export class AngularMaterialModule { }

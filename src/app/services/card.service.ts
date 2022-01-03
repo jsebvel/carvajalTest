@@ -17,9 +17,19 @@ export class CardService {
     private httpClient: HttpClient
   ) { }
 
-  createCard(cardData, userId?) {
-    const cardInfo = { ...cardData, user: { userId } }
-    return this.httpClient.post(`${this.baseUrl}/card`, cardInfo, this.httpOptions);
+  createCard(cardData) {
+
+    const newHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+
+    const authorizedHeaders = {
+      headers: newHeaders
+    }
+
+
+    return this.httpClient.post(`${this.baseUrl}/card`, cardData, authorizedHeaders);
   }
 
   updateCard(cardData) {
@@ -27,7 +37,12 @@ export class CardService {
   }
 
   deleteCard(cardId: number) {
-      return this.httpClient.delete(`${this.baseUrl}/card/${cardId}`, this.httpOptions);
+    return this.httpClient.delete(`${this.baseUrl}/card/${cardId}`, this.httpOptions);
+  }
+
+  getAllCards() {
+    return this.httpClient.get(`${this.baseUrl}/card`);
+
   }
 
   setUserWithCards(userWithCards) {

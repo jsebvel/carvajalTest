@@ -19,15 +19,15 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this._userService.signOut();
-    this._router.navigate(['']);
+    this._router.navigate(['login']);
   }
 
   goEdit() {
-    this._router.navigate(['editUser'])
+    this._router.navigate(['cardEdition'])
   }
 
   goCreate() {
-    this._router.navigate(['personalInformation']);
+    this._router.navigate(['createCard']);
   }
 
 }

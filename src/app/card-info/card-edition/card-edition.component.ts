@@ -10,7 +10,7 @@ import { MessageService } from 'src/app/services/error-message.service';
   styleUrls: ['./card-edition.component.scss']
 })
 export class CardEditionComponent implements OnInit {
-  userWithCards;
+  cards;
   cardForm: FormGroup;
   userBasicInfo;
   constructor(
@@ -22,18 +22,15 @@ export class CardEditionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userWithCards = this._cardService.getUserWithCards();
-     if(this.userWithCards) {
-       this.buildUserBasicInfo();
-     }
+    this.getAllCards()
   }
 
-  buildUserBasicInfo() {
-    this.userBasicInfo = {
-      name: `${this.userWithCards.name} ${this.userWithCards.surname}`,
-      userId: this.userWithCards.userId,
-      document: this.userWithCards.document
-    }
+  getAllCards() {
+    this._cardService.getAllCards().subscribe(cards => {
+      this.cards = cards;
+      console.log(this.cards);
+    })
   }
+
 
 }
