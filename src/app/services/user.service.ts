@@ -18,14 +18,23 @@ export class UserService {
   ) { }
 
   signOut() {
-    sessionStorage.clear();
+    localStorage.clear();
   }
 
   createUser(userInfo) {
-    return this.http.post(`${this.baseUrl}/user`, userInfo, this.httpOptions);
+    return this.http.post(`${this.baseUrl}/auth/register`, userInfo, this.httpOptions);
   }
 
   getAllUsers() {
     return this.http.get(`${this.baseUrl}/user`);
+  }
+
+  login(userData) {
+    return this.http.post(`${this.baseUrl}/auth/login`, userData, this.httpOptions);
+
+  }
+
+  getToken() {
+    return localStorage.getItem('token') ?? null;
   }
 }

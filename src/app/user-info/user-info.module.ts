@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { UserInfoRoutingModule } from './user-info-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PersonalInformationComponent } from './personal-information/personal-information.component';
+import { PersonalInformationComponent } from '../auth/personal-information/personal-information.component';
 import { AngularMaterialModule } from '../angular-material.module';
 import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 @NgModule({
   declarations: [
-    PersonalInformationComponent,
     EditUserComponent
   ],
   imports: [
@@ -23,7 +22,6 @@ import { EditUserComponent } from './edit-user/edit-user.component';
   exports: [
     ReactiveFormsModule,
     AngularMaterialModule,
-    PersonalInformationComponent
   ]
 })
 export class UserInfoModule { }

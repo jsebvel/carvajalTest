@@ -1,6 +1,5 @@
-<ng-container *ngIf="userWithCards">
-  <ng-container *ngFor="let card of userWithCards.cards">
-    <app-basic-card [card]="card" [userId]="userWithCards.userId" [title]="'Edición de tarjetas'"></app-basic-card>
+<ng-container *ngIf="this.cards">
+  <ng-container *ngFor="let card of this.cards">
+    <app-basic-card [card]="card"></app-basic-card>
   </ng-container>
-
 </ng-container>

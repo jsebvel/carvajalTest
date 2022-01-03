@@ -7,13 +7,19 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardEditionComponent } from './card-edition/card-edition.component';
 import { BasicCardComponent } from './basic-card/basic-card.component';
+import { CreateCardComponent } from './create-card/create-card.component';
+import { NavbarComponent } from '../shared/navbar/navbar.component';
+import { CardNumberPipe } from '../card-number.pipe';
 
 
 @NgModule({
   declarations: [
     CardFormComponent,
     CardEditionComponent,
-    BasicCardComponent
+    BasicCardComponent,
+    CreateCardComponent,
+    CardNumberPipe,
+    NavbarComponent
   ],
   imports: [
     CommonModule,

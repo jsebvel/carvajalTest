@@ -7,7 +7,6 @@ import { CardFormComponent } from 'src/app/card-info/card-form/card-form.compone
 import { CardService } from 'src/app/services/card.service';
 import { MessageService } from 'src/app/services/error-message.service';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2'
 
 
 
@@ -17,9 +16,6 @@ import Swal from 'sweetalert2'
   styleUrls: ['./personal-information.component.scss']
 })
 export class PersonalInformationComponent implements OnInit {
-  @Input() userListed;
-  @Input() userIndex
-  @Input() usersLength
   userExists: boolean;
   personalInformationForm: FormGroup = new FormGroup({});
   emailPattern = '[ÑA-Zña-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})';
@@ -42,21 +38,14 @@ export class PersonalInformationComponent implements OnInit {
     this.personalInformationForm = this._personalInfBuilder.group({
       name: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(120)])],
       surname: ['', Validators.compose([Validators.required, Validators.maxLength(120)])],
-      address: ['', Validators.compose([Validators.required, Validators.maxLength(120)])],
       email: ['', Validators.compose([Validators.required, Validators.maxLength(120), Validators.pattern(this.emailPattern)])],
-      phone: ['', Validators.compose([Validators.required, Validators.maxLength(120)])],
       cellphone: ['', Validators.compose([Validators.required, Validators.maxLength(120)])],
       document: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(15)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(20)])],
     });
-    if (this.userListed) {
-      this.loadInfo();
-    }
+
   }
 
-  loadInfo() {
-    this.personalInformationForm.patchValue(this.userListed);
-    console.log(this.personalInformationForm);
-  }
 
   getError(formControlName, fieldName) {
     return this._messageService.getFieldsError(this.personalInformationForm, formControlName, fieldName)
@@ -75,6 +64,7 @@ export class PersonalInformationComponent implements OnInit {
     }
   }
 
+
   handleCreateResponse(response) {
     this._messageService.getNewAddMessage();
   }
@@ -88,14 +78,18 @@ export class PersonalInformationComponent implements OnInit {
     const dialogRef = this.cardDialog.open(CardFormComponent, {
       width: '450px',
       data: {
-        userId: this.userListed.userId
+        userId: localStorage.getItem('userEmail')
       }
+    });
+    dialogRef.afterClosed().subscribe(data => {
+
+      //this._router.navigate(['editUser'])
     })
   }
 
-  editCards() {
-    this._cardService.setUserWithCards(this.userListed);
-    this._router.navigate(['cardEdition'])
-  }
+  // editCards() {
+  //   this._cardService.setUserWithCards(this.userListed);
+  //   this._router.navigate(['cardEdition'])
+  // }
 
 }

@@ -1,0 +1,74 @@
+<div class="row d-flex justify-content-center bg-gray rounded" style="margin-top: 13%;">
+  <div style="width: 50%; height: 50;" class="card">
+    <legend style="font-size: 1.3em; font-weight: 800; color: rgb(252, 252, 245);">
+      Registro
+    </legend>
+
+    <form [formGroup]="personalInformationForm" class="shadow p-3 mb-5 bg-gray rounded ">
+      <div>
+        <mat-form-field appearance="outline" class="col-md-5 offset-1">
+          <mat-label>Nombre*:</mat-label>
+          <input matInput placeholder="Nombre" formControlName="name" type="text" id="name" name="name">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('name').invalid">
+            {{getError("name", 'Nombre')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-5">
+          <mat-label>Apellidos*:</mat-label>
+          <input matInput placeholder="Apellidos" formControlName="surname" type="text" id="lastname" name="surname">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('surname').invalid">
+            {{getError("surname", 'Apellidos')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-5 offset-1">
+          <mat-label>Cédula*:</mat-label>
+          <input matInput placeholder="Cédula" formControlName="document" type="text" id="document" name="document">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('surname').invalid">
+            {{getError("document", 'Cédula')}}
+          </mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field appearance="outline" class="col-md-5">
+          <mat-label>Correo electrónico*:</mat-label>
+          <input matInput placeholder="mail@mail.com" formControlName="email" type="text" id="email" name="email">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('email').invalid">
+            {{getError("email", 'Correo electrónico')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-5 offset-1">
+          <mat-label>Teléfono celular:</mat-label>
+          <input matInput placeholder="Teléfono celular" formControlName="cellphone" type="text" id="cellphone"
+            name="cellphone">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('cellphone').invalid">
+            {{getError("cellphone", 'Teléfono celular')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="col-md-5">
+          <mat-label>Contraseña:</mat-label>
+          <input matInput placeholder="Contraseña" formControlName="password" type="password" id="password"
+            name="password">
+          <mat-error appearance="outline" *ngIf="personalInformationForm.get('password').invalid">
+            {{getError("password", 'Contraseña')}}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="d-flex justify-content-center">
+
+          <button class="btn btn-outline-info" (click)="createUser()">Regístrate</button>
+
+        </div>
+        <a routerLink="">Volver a inicio de sesión</a>
+      </div>
+    </form>
+
+  </div>
+
+  <br />
+
+</div>

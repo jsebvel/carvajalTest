@@ -1,3 +1,5 @@
+<app-navbar> </app-navbar>
+
 <div class="card card-body d-flex justify-content-center">
   <legend style="font-size: 1.3em; font-weight: 800; color: rgb(252, 252, 245);">
     {{this.title}}
@@ -10,14 +12,28 @@
   <div class="shadow p-3 mb-5 bg-gray rounded">
 
     <form [formGroup]="cardForm">
-      <mat-form-field appearance="outline" class="col-md-9 offset-1">
-        <mat-label>Numero de la tarjeta*:</mat-label>
-        <input matInput placeholder="Número de tarjeta" formControlName="cardNumber" type="text" id="cardNumber"
-          cardNumber="cardNumber">
-        <mat-error appearance="outline" *ngIf="cardForm.get('cardNumber').invalid">
-          {{getError("cardNumber", 'Número de tarjeta')}}
-        </mat-error>
-      </mat-form-field>
+      <ng-container *ngIf="!card; else cardNumber">
+        <mat-form-field appearance="outline" class="col-md-9 offset-1">
+          <mat-label>Numero de la tarjeta*:</mat-label>
+          <input matInput placeholder="Número de tarjeta" formControlName="cardNumber" type="text" id="cardNumber"
+            cardNumber="cardNumber">
+          <mat-error appearance="outline" *ngIf="cardForm.get('cardNumber').invalid">
+            {{getError("cardNumber", 'Número de tarjeta')}}
+          </mat-error>
+        </mat-form-field>
+      </ng-container>
+
+      <ng-template #cardNumber>
+        <mat-form-field appearance="outline" class="col-md-9 offset-1">
+          <mat-label>Numero de la tarjeta*:</mat-label>
+          <input matInput placeholder="Número de tarjeta"  type="text" id="cardNumber"
+            cardNumber="cardNumber"> {{card.cardNumber | cardNumber:3}}
+          <mat-error appearance="outline" *ngIf="cardForm.get('cardNumber').invalid">
+            {{getError("cardNumber", 'Número de tarjeta')}}
+          </mat-error>
+        </mat-form-field>
+      </ng-template>
+
 
       <mat-form-field appearance="outline" class="col-md-9 offset-1">
         <mat-label>Fecha de expiración*</mat-label>

@@ -7,20 +7,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-  userList;
+  cards;
   constructor(
     private _userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.getAllUSers();
   }
 
-  getAllUSers() {
-    this._userService.getAllUsers().subscribe(users => {
-      this.userList = users;
-      console.log(this.userList);
-    })
-  }
 
 }

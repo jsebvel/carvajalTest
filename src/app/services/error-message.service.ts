@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2'
 
@@ -7,7 +8,9 @@ import Swal from 'sweetalert2'
 })
 export class MessageService {
 
-  constructor() { }
+  constructor(
+    private _router: Router
+  ) { }
 
   getFieldsError(form, formControlName: string, fieldName: string) {
     const errorMessage = form.get(formControlName).errors;
@@ -80,6 +83,44 @@ export class MessageService {
     });
   }
 
+  loginSuccess() {
+    Swal.fire({
+      title: '¡Hola!',
+      text: 'Bienvenido de nuevo',
+      color: '#ffff',
+      icon: 'success',
+      allowEnterKey: true,
+      allowEscapeKey: true,
+      allowOutsideClick: false,
+      showClass: {
+        popup: 'swal2-show',
+        backdrop: 'swal2-backdrop-show',
+        icon: 'swal2-icon-show'
+      },
+      background: '#585858'
+    }).then(succesfull => {
+      this._router.navigate(['createCard'])
+    });
+  }
+
+  loginError() {
+    Swal.fire({
+      title: '¡Hola!',
+      text: 'Por favor verifica que los datos ingresados sean correctos',
+      color: '#ffff',
+      icon: 'error',
+      allowEnterKey: true,
+      allowEscapeKey: true,
+      allowOutsideClick: false,
+      showClass: {
+        popup: 'swal2-show',
+        backdrop: 'swal2-backdrop-show',
+        icon: 'swal2-icon-show'
+      },
+      background: '#585858'
+    });
+  }
+
   addCardSuccess() {
     Swal.fire({
       title: '¡Genial!',
@@ -88,6 +129,8 @@ export class MessageService {
       allowEnterKey: true,
       allowEscapeKey: true,
       allowOutsideClick: false
+    }).then(data => {
+      window.location.reload();
     });
   }
 
@@ -117,6 +160,8 @@ export class MessageService {
       allowEnterKey: true,
       allowEscapeKey: true,
       allowOutsideClick: false
+    }).then(data => {
+      window.location.reload();
     });
   }
 

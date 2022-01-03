@@ -32,7 +32,7 @@ export class BasicCardComponent implements OnInit {
 
   createForm() {
     this.cardForm = this._formBuilder.group({
-      cardNumber: ['', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(15)])],
+      cardNumber: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(15)])],
       expirationDate: ['', Validators.compose([Validators.required])],
       cv: ['', Validators.compose([Validators.required, Validators.minLength(2), Validators.maxLength(3)])],
     })
@@ -71,7 +71,7 @@ export class BasicCardComponent implements OnInit {
 
   saveCard() : any {
     if (this.cardForm.valid) {
-      this._cardService.createCard(this.cardForm.getRawValue(), this.userId).subscribe(
+      this._cardService.createCard(this.cardForm.getRawValue()).subscribe(
         {
           next: this.handleAddSuccess.bind(this),
           error: this.handleAddError.bind(this)
@@ -93,7 +93,6 @@ export class BasicCardComponent implements OnInit {
 
   handleAddSuccess() {
     this._messageService.addCardSuccess();
-    this.dialogRef.close();
   }
   handleAddError() {
     this._messageService.addCardError();
@@ -104,6 +103,7 @@ export class BasicCardComponent implements OnInit {
   }
 
   loadCardData() {
+    this.cardForm.get('cardNumber').disable();
     this.cardForm.patchValue(this.card);
   }
 }

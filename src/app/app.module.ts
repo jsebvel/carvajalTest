@@ -12,12 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardInfoModule } from './card-info/card-info.module';
 import { registerLocaleData } from '@angular/common';
 import localePy from '@angular/common/locales/es-US';
+import { AuthModule } from './auth/auth.module';
+import { CardNumberPipe } from './card-number.pipe';
 registerLocaleData(localePy, 'es');
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +27,11 @@ registerLocaleData(localePy, 'es');
     AngularMaterialModule,
     UserInfoModule,
     HttpClientModule,
-    CardInfoModule
-    ],
+    CardInfoModule,
+    AuthModule
+  ],
+  exports: [
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
